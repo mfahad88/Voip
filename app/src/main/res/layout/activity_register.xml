@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.abtotest.voiptest.RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:layout_centerHorizontal="true"
+        android:textSize="28sp"
+        android:textFontWeight="800"
+        android:layout_marginTop="80dp"/>
+
+    <LinearLayout
+        android:id="@+id/credentials_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:hint="Login" >
+        </EditText>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/password"
+            android:padding="7dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+
+        <!--<EditText
+            android:layout_marginTop="10dip"
+            android:id="@+id/domain"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Domain" />
+
+        <CheckBox
+            android:layout_marginTop="5dip"
+            android:id="@+id/disable_registration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Disable registration"/>-->
+
+        <Button
+            android:layout_marginTop="45dip"
+            android:id="@+id/register_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_gradient"
+            android:text="Register" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
