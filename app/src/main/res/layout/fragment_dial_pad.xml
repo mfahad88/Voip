@@ -11,36 +11,84 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_logout"
+                android:drawableStart="@drawable/ic_baseline_power_"
+                android:drawableLeft="@drawable/ic_baseline_power_"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:text="Logout"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher_round" />
+                <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:textSize="16sp"
+                android:text="Balance:"
+                android:textFontWeight="800"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_weight="0.4"
+                android:id="@+id/txt_balance"
+                android:textSize="16sp"
+                android:text="10.0"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:background="@drawable/text_square"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/txt_dial_number"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:id="@+id/txt_dial_number"
-                android:text=""
+                android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textSize="20sp"
-                android:gravity="center_vertical"
-                />
+                android:text=""
+                android:textSize="20sp" />
 
             <ImageView
+                android:id="@+id/image_remove"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"
                 android:layout_gravity="center"
+                android:background="@android:color/white"
                 android:paddingLeft="7dp"
                 android:paddingRight="7dp"
-                android:id="@+id/image_remove"
-                android:background="@android:color/white"
-                android:src="@drawable/ic_baseline_backspace"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_backspace" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,65 +98,65 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linear_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_margin="20dp"
-                android:id="@+id/linear_one"
-                android:background="@drawable/ic_dial_pad">
+                android:background="@drawable/ic_dial_pad"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="1"
-                    android:id="@+id/txt_one"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:orientation="horizontal"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:id="@+id/linear_two"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2"
-                    android:id="@+id/txt_two"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:id="@+id/linear_three"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="3"
-                    android:id="@+id/txt_three"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -122,65 +170,65 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linear_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/linear_four"
                 android:layout_margin="20dp"
-                android:background="@drawable/ic_dial_pad">
+                android:background="@drawable/ic_dial_pad"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="4"
-                    android:id="@+id/txt_four"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:orientation="horizontal"
-                android:id="@+id/linear_five"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_five"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="5"
-                    android:id="@+id/txt_five"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:id="@+id/linear_six"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_six"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="6"
-                    android:id="@+id/txt_six"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -194,65 +242,65 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linear_seven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/linear_seven"
                 android:layout_margin="20dp"
-                android:background="@drawable/ic_dial_pad">
+                android:background="@drawable/ic_dial_pad"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_seven"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="7"
-                    android:id="@+id/txt_seven"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_eight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:orientation="horizontal"
-                android:id="@+id/linear_eight"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_eight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="8"
-                    android:id="@+id/txt_eight"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_nine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:id="@+id/linear_nine"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_nine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="9"
-                    android:id="@+id/txt_nine"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -266,68 +314,67 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linear_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/linear_star"
                 android:layout_margin="20dp"
-                android:background="@drawable/ic_dial_pad">
+                android:background="@drawable/ic_dial_pad"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_star"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="*"
-                    android:id="@+id/txt_star"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_zero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:orientation="horizontal"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:id="@+id/linear_zero"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_zero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/txt_zero"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_hash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:id="@+id/linear_hash"
+                android:background="@drawable/ic_dial_pad"
                 android:gravity="center"
-                android:background="@drawable/ic_dial_pad">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txt_hash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="#"
-                    android:id="@+id/txt_hash"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
                     android:textFontWeight="700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -339,25 +386,23 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linear_call"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="60dp"
-                android:id="@+id/linear_call"
-                android:background="@drawable/ic_dial_pad">
+                android:background="@drawable/ic_dial_pad"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <ImageView android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <ImageView
                     android:id="@+id/image_call"
-                    android:src="@drawable/ic_phone"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_phone" />
 
             </LinearLayout>
-
-
-
 
 
         </LinearLayout>
