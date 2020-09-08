@@ -1,9 +1,14 @@
 package com.example.voip.fragment;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,12 +19,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.voip.R;
+import com.example.voip.activity.LoginActivity;
+import com.example.voip.activity.ScreenAV;
+
+import org.abtollc.sdk.AbtoApplication;
+import org.abtollc.sdk.AbtoPhone;
+import org.abtollc.sdk.OnRegistrationListener;
 
 
-public class DialPadFragment extends Fragment implements View.OnClickListener {
+public class DialPadFragment extends Fragment implements View.OnClickListener, OnRegistrationListener {
 
     private View root;
-    private TextView txt_dial_number;
+    private ProgressDialog dialog;
+    public static String START_VIDEO_CALL = "START_VIDEO_CALL";
+    private TextView txt_dial_number,accLabel;
     private LinearLayout linear_one;
     private LinearLayout linear_two;
     private LinearLayout linear_three;
@@ -34,7 +47,9 @@ public class DialPadFragment extends Fragment implements View.OnClickListener {
     private LinearLayout linear_hash;
     private LinearLayout linear_call;
     private ImageView image_remove;
-
+    private AbtoPhone abtoPhone;
+    private String domain;
+    int accExpire;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +63,22 @@ public class DialPadFragment extends Fragment implements View.OnClickListener {
         root=inflater.inflate(R.layout.fragment_dial_pad, container, false);
         initViews();
         setListener();
+
+        int accId = (int)abtoPhone.getCurrentAccountId();
+        accExpire = abtoPhone.getConfig().getAccountExpire(accId);
+        String contact = abtoPhone.getConfig().getAccount(accId).acc_id;
+        contact = contact.replace("<", "");
+        contact = contact.replace(">", "");
+
+        if (accExpire == 0)  {
+            accLabel.setText("Local contact: " + contact + ":" + abtoPhone.getConfig().getSipPort());
+
+            domain = "";
+        }
+        else  {
+            accLabel.setText("Registered as : " + contact);
+            domain = abtoPhone.getConfig().getAccountDomain(accId);
+        }
         return root;
     }
 
@@ -66,9 +97,11 @@ public class DialPadFragment extends Fragment implements View.OnClickListener {
         linear_eight.setOnClickListener(this);
         linear_nine.setOnClickListener(this);
         image_remove.setOnClickListener(this);
+        abtoPhone.setRegistrationStateListener(this);
     }
 
     private void initViews() {
+        accLabel = root.findViewById(R.id.account_label);
         txt_dial_number=root.findViewById(R.id.txt_dial_number);
         linear_call=root.findViewById(R.id.linear_call);
         linear_star=root.findViewById(R.id.linear_star);
@@ -84,13 +117,14 @@ public class DialPadFragment extends Fragment implements View.OnClickListener {
         linear_eight=root.findViewById(R.id.linear_eight);
         linear_nine=root.findViewById(R.id.linear_nine);
         image_remove=root.findViewById(R.id.image_remove);
-
+        abtoPhone = ((AbtoApplication) getActivity().getApplication()).getAbtoPhone();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.linear_call:
+                startCall(false);
                 break;
 
             case R.id.linear_star:
@@ -147,5 +181,100 @@ public class DialPadFragment extends Fragment implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    public void startCall(boolean bVideo)   {
+
+        //Check empty
+        String sipNumber = txt_dial_number.getText().toString();
+        if(sipNumber.isEmpty())  return;
+
+        //Verify direct call mode
+        if(TextUtils.isEmpty(domain) && !sipNumber.contains("@") ) {
+            Toast.makeText(getContext(), "Specify remote side address as 'number@domain:port'", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Build address to dial
+        StringBuffer buildString = new StringBuffer();
+        buildString.append(sipNumber);
+
+        //Append domain (if required)
+        if(!sipNumber.contains("@")) {
+            buildString.append("@");
+            buildString.append(domain);
+        }
+/*
+        //Append headers
+        try {
+            buildString.append("?");
+            buildString.append("header1=");
+            buildString.append(URLEncoder.encode("qq<q>q", "UTF-8"));//value of 'header1'
+
+            buildString.append("&");
+
+            buildString.append("header2=");
+            buildString.append(URLEncoder.encode("a@b", "UTF-8"));//value of 'header2'
+            //=======================
+            buildString.append("?");
+            buildString.append("X-AccountId=");
+            buildString.append(URLEncoder.encode("2223344", "UTF-8"));//value of 'header1'
+
+            buildString.append("&");
+
+            buildString.append("X-Geolocation=");
+            buildString.append(URLEncoder.encode("<geo:43.6665599,-79.3791219;timestamp=20200317094000>", "UTF-8"));//value of 'header2'
+
+        }
+        catch (UnsupportedEncodingException e)
+        {
+        }*/
+
+        Intent intent = new Intent(getContext(), ScreenAV.class);
+        intent.putExtra(AbtoPhone.IS_INCOMING, false);//!
+        intent.putExtra(AbtoPhone.REMOTE_CONTACT, buildString.toString());
+        intent.putExtra(START_VIDEO_CALL, bVideo);
+        startActivity(intent);
+        txt_dial_number.setText("");
+    }
+
+    @Override
+    public void onRegistrationFailed(long accId, int statusCode, String statusText) {
+
+
+
+        AlertDialog.Builder fail = new AlertDialog.Builder(getContext());
+        fail.setTitle("Registration failed");
+        fail.setMessage(statusCode + " - " + statusText);
+        fail.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        fail.show();
+
+        onUnRegistered(0);
+    }
+
+    @Override
+    public void onRegistered(long accId) {
+        //Toast.makeText(this, "MainActivity - onRegistered", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUnRegistered(long arg0) {
+
+        if(dialog != null) dialog.dismiss();
+
+        //Unsubscribe reg events
+        abtoPhone.setRegistrationStateListener(null);
+
+        //Start reg activity
+        startActivity(new Intent(getContext(), LoginActivity.class));
+
+        //Close this activity
+        getActivity().finish();
     }
 }

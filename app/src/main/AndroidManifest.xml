@@ -53,6 +53,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -67,6 +68,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.ScreenAV"/>
+        <service
+            android:name="org.abtollc.service.ABTOSipService"
+            android:stopWithTask="true">
+            <intent-filter>
+                <action android:name="org.abtollc.service.ABTOSipService" />
+                <action android:name="org.abtollc.service.SipConfiguration" />
+            </intent-filter>
+        </service>
+        <provider android:name="org.abtollc.db.DBProvider"
+            android:authorities="abto.com.sdktest"/>
+        <meta-data android:name="AbtoVoipAuthority" android:value="abto.com.sdktest" />
 
     </application>
 

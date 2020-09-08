@@ -6,7 +6,58 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/linear_header"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_logout"
+            android:drawableStart="@drawable/ic_baseline_power_"
+            android:drawableLeft="@drawable/ic_baseline_power_"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:text="Logout"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageLogo"
+            android:src="@mipmap/ic_launcher_round" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:text="Balance: "
+            android:layout_toRightOf="@id/imageLogo"
+            android:textFontWeight="800"
+            android:id="@+id/txt_balance_title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/txt_balance"
+            android:textSize="16sp"
+            android:text="0.0"
+            android:layout_toRightOf="@id/txt_balance_title"
+            android:textColor="@android:color/white"
+            android:textFontWeight="800"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,6 +167,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/linear_nav"
+        android:layout_below="@id/linear_header"
          />
 
 </RelativeLayout>
