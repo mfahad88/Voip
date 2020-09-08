@@ -54,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    abtoPhone.setRegistrationStateListener(null);
                     abtoPhone.unregister();
+                    if(abtoPhone.isActive())
+                        abtoPhone.destroy();
                     System.exit(1);
                 } catch (RemoteException e) {
                     e.printStackTrace();
