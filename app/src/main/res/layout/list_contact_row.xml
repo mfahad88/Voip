@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="7dp"
+    android:background="@drawable/drawable_border">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/image_contact"
+        android:src="@drawable/contact"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/image_contact"
+        android:padding="2dp"
+        android:layout_marginLeft="5dp"
+        android:text="Test"
+        android:textSize="20sp"
+        android:fontFamily="serif-monospace"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:maxWidth="200dp"
+        android:ellipsize="end"
+        android:id="@+id/txt_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:text="bdguaodg"
+        android:layout_alignLeft="@id/txt_name"
+        android:layout_below="@id/txt_name"
+        android:padding="2dp"
+        android:id="@+id/txt_number"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_phone"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:id="@+id/image_call"/>
+</RelativeLayout>
