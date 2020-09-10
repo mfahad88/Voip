@@ -76,6 +76,7 @@ public class SplashActivity extends Activity implements OnInitializeListener {
         if (!addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE)) permissionsNeeded.add("Write logs to sd card");
         if (!addPermission(permissionsList, Manifest.permission.CAMERA))                 permissionsNeeded.add("Camera");
         if (!addPermission(permissionsList, Manifest.permission.USE_SIP))                permissionsNeeded.add("Use SIP protocol");
+        if (!addPermission(permissionsList, Manifest.permission.READ_CONTACTS))                permissionsNeeded.add("Read Contacts");
 
 
         if (permissionsList.size() > 0) {
@@ -139,6 +140,7 @@ public class SplashActivity extends Activity implements OnInitializeListener {
                 perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.CAMERA,                 PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.USE_SIP,                PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.READ_CONTACTS,                PackageManager.PERMISSION_GRANTED);
 
                 //Fill with results
                 for (int i = 0; i < permissions.length; i++) perms.put(permissions[i], grantResults[i]);
@@ -147,7 +149,8 @@ public class SplashActivity extends Activity implements OnInitializeListener {
                 if (perms.get(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.USE_SIP) == PackageManager.PERMISSION_GRANTED) {
+                        perms.get(Manifest.permission.USE_SIP) == PackageManager.PERMISSION_GRANTED &&
+                        perms.get(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
                     // All Permissions Granted
                     initPhone();
                 } else {

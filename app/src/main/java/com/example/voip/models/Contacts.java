@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 public class Contacts {
     private String name;
     private String phone;
-    private Bitmap image;
+    private String image;
 
-    public Contacts(String name, String phone, Bitmap image) {
+    public Contacts(String name, String phone, String image) {
         this.name = name;
         this.phone = phone;
         this.image = image;
@@ -29,11 +29,11 @@ public class Contacts {
         this.phone = phone;
     }
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
