@@ -89,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         linear_contacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED){
-                    replaceFragment(new ContactsFragment());
-                }
+                replaceFragment(new ContactsFragment());
             }
         });
 
@@ -104,43 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void requestContactPermission() {
-        if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,Manifest.permission.READ_CONTACTS)){
-            replaceFragment(new ContactsFragment());
-            /*new AlertDialog.Builder(this)
-                    .setTitle("Permission needed")
-                    .setMessage("This permission is needed because of this and that")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MainActivity.this,
-                                    new String[] {Manifest.permission.READ_CONTACTS}, PERMISSION_CODE);
-                        }
-                    })
-                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .create().show();*/
-
-        }else{
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSION_CODE);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==PERMISSION_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                //replaceFragment(new DialPadFragment());
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();

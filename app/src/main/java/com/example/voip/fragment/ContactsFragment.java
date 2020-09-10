@@ -171,10 +171,6 @@ public class ContactsFragment extends Fragment {
             @Override
             protected void onPostExecute(final List<Contacts> contacts) {
                 super.onPostExecute(contacts);
-                for (Contacts contacts1:
-                     contacts) {
-                    Log.e(contacts1.getName(),contacts1.getPhone()+"\n"+contacts1.getImage());
-                }
 
                 recycler_view.setAdapter(new RecyclerView.Adapter() {
                     @NonNull
