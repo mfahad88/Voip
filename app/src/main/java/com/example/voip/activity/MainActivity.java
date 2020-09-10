@@ -16,6 +16,7 @@ import com.example.voip.ApiClient;
 import com.example.voip.R;
 import com.example.voip.fragment.ContactsFragment;
 import com.example.voip.fragment.DialPadFragment;
+import com.example.voip.fragment.HistoryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonElement;
 
@@ -90,9 +91,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED){
                     replaceFragment(new ContactsFragment());
-                }else{
-                    requestContactPermission();
                 }
+            }
+        });
+
+        linear_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new HistoryFragment());
             }
         });
 
